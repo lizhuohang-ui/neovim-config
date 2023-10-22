@@ -7,4 +7,7 @@ return {
 			vim.cmd([[colorscheme nord]])
 		end,
 	},
+	{
+		"MunifTanjim/nui.nvim", lazy = true,
+	},
 }

@@ -20,7 +20,16 @@ return {
 			"MunifTanjim/nui.nvim",
 		},
 		keys = {
-			{ "<leader>e", "<cmd>Neotree<CR>", desc = "open the Neotree" },
+			{
+				"<leader>e",
+				function()
+					require("neo-tree.command").execute({
+						toggle = true,
+						position = "left",
+					})
+				end,
+				desc = "Explorer NeoTree (root dir)"
+			},
 		},
 	},
 	{
@@ -34,4 +43,3 @@ return {
 		end,
 	},
 }
-
