@@ -1,0 +1,29 @@
+{
+    "workspace.library": [
+        "/home/lizhuohang/.local/share/nvim/lazy/neodev.nvim/types/stable",
+        "/usr/share/nvim/runtime/lua",
+        "/home/lizhuohang/.local/share/nvim/lazy/cmp-nvim-lsp/lua",
+        "/home/lizhuohang/.local/share/nvim/lazy/plenary.nvim/lua",
+        "/home/lizhuohang/.local/share/nvim/lazy/cmp-buffer/lua",
+        "/home/lizhuohang/.local/share/nvim/lazy/neo-tree.nvim/lua",
+        "/home/lizhuohang/.local/share/nvim/lazy/mason.nvim/lua",
+        "/home/lizhuohang/.local/share/nvim/lazy/cmp-path/lua",
+        "/home/lizhuohang/.local/share/nvim/lazy/which-key.nvim/lua",
+        "/home/lizhuohang/.local/share/nvim/lazy/nvim-web-devicons/lua",
+        "/home/lizhuohang/.local/share/nvim/lazy/nvim-lspconfig/lua",
+        "/home/lizhuohang/.local/share/nvim/lazy/cmp-cmdline/lua",
+        "/home/lizhuohang/.local/share/nvim/lazy/neoconf.nvim/lua",
+        "/home/lizhuohang/.local/share/nvim/lazy/nui.nvim/lua",
+        "/home/lizhuohang/.local/share/nvim/lazy/mason-lspconfig.nvim/lua",
+        "/home/lizhuohang/.local/share/nvim/lazy/neodev.nvim/lua",
+        "/home/lizhuohang/.local/share/nvim/lazy/LuaSnip/lua",
+        "/home/lizhuohang/.local/share/nvim/lazy/nvim-cmp/lua",
+        "/home/lizhuohang/.local/share/nvim/lazy/lazy.nvim/lua",
+        "/home/lizhuohang/.local/share/nvim/lazy/telescope.nvim/lua",
+        "/home/lizhuohang/.local/share/nvim/lazy/nord.nvim/lua",
+        "/home/lizhuohang/.config/nvim/lua",
+        "${3rd}/luv/library",
+        "${3rd}/luv/library"
+    ],
+    "workspace.checkThirdParty": false
+}
