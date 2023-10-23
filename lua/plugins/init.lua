@@ -16,20 +16,42 @@ return {
 			wk.register({
 				["<leader>v"] = { "<c-w>v", "vsplit window" },
 				["<leader>s"] = { "<c-w>s", "split window" },
-				["<leader>m"] = { name = "+markdown"},
-				["<leader>mp"] = { "<cmd>MarkdownPreview<cr>", "markdown preview"},
+				["<leader>m"] = { name = "+markdown" },
+				["<leader>mp"] = { "<cmd>MarkdownPreview<cr>", "markdown preview" },
 			})
 		end
 	},
 
 	{
 		"folke/persistence.nvim",
-		event = "BufReadPre", -- this will only start session saving when an actual file was opened
-		opts = {
-			-- add any custom options here
-		}
+		event = "BufReadPre",
+		opts = { options = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp" } },
+		-- stylua: ignore
+		keys = {
+			{
+				"<leader>qs",
+				function() require("persistence").load() end,
+				desc = "Restore Session"
+			},
+			{
+				"<leader>ql",
+				function() require("persistence").load({ last = true }) end,
+				desc = "Restore Last Session"
+			},
+			{
+				"<leader>qd",
+				function() require("persistence").stop() end,
+				desc = "Don't Save Current Session"
+			},
+		},
 	},
-
+	{
+		"dstein64/vim-startuptime",
+		cmd = "StartupTime",
+		config = function()
+			vim.g.startuptime_tries = 10
+		end,
+	},
 	{
 		"folke/neoconf.nvim",
 		cmd = "Neoconf",
@@ -55,8 +77,21 @@ return {
 		'nvimdev/dashboard-nvim',
 		event = 'VimEnter',
 		config = function()
+
 			require('dashboard').setup {
 				-- config
+				theme = "hyper",
+				config = {
+
+					header = {
+						' ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗',
+						' ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║',
+						' ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║',
+						' ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║',
+						' ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║',
+						' ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝',
+					}
+				}
 			}
 		end,
 		dependencies = { { 'nvim-tree/nvim-web-devicons' } }
@@ -96,5 +131,26 @@ return {
 				},
 			})
 		end
+	},
+	{
+		"nvim-neorg/neorg",
+		build = ":Neorg sync-parsers",
+		event = "VeryLazy",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("neorg").setup {
+				load = {
+					["core.defaults"] = {}, -- Loads default behaviour
+					["core.concealer"] = {}, -- Adds pretty icons to your documents
+					["core.dirman"] = { -- Manages Neorg workspaces
+						config = {
+							workspaces = {
+								notes = "~/notes",
+							},
+						},
+					},
+				},
+			}
+		end,
 	}
 }

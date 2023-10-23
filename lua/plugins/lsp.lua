@@ -43,7 +43,44 @@ return {
 			})
 		end
 	},
-	{ "rafamadriz/friendly-snippets" },
+
+	{
+		event = "VeryLazy",
+		"jose-elias-alvarez/null-ls.nvim",
+		dependencies = {
+			"williamboman/mason-lspconfig.nvim",
+			"nvim-lua/plenary.nvim"
+		},
+		config = function()
+			local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+			require("null-ls").setup({
+				-- you can reuse a shared lspconfig on_attach callback here
+				on_attach = function(client, bufnr)
+					if client.supports_method("textDocument/formatting") then
+						vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+						vim.api.nvim_create_autocmd("BufWritePre", {
+							group = augroup,
+							buffer = bufnr,
+							callback = function()
+								-- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+								-- on later neovim version, you should use vim.lsp.buf.format({ async = false }) instead
+								vim.lsp.buf.formatting_sync()
+							end,
+						})
+					end
+				end,
+			})
+		end
+	},
+
+
+	{
+		"rafamadriz/friendly-snippets",
+		config = function()
+			require("luasnip.loaders.from_vscode").lazy_load()
+		end,
+	},
+
 	{
 		event = "VeryLazy",
 		"hrsh7th/nvim-cmp",
@@ -57,12 +94,13 @@ return {
 			'L3MON4D3/LuaSnip',
 			'saadparwaiz1/cmp_luasnip',
 		},
+
 		config = function()
 			-- Set up nvim-cmp.
 			local cmp = require 'cmp'
 
 			local luasnip = require("luasnip")
-
+			-- local Util = require("lazy.core.util")
 			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
