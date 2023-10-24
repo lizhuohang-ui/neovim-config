@@ -18,6 +18,7 @@ return {
 				["<leader>s"] = { "<c-w>s", "split window" },
 				["<leader>m"] = { name = "+markdown" },
 				["<leader>mp"] = { "<cmd>MarkdownPreview<cr>", "markdown preview" },
+				["<leader>t"] = { "<cmd>TranslateW<cr>", "TranslateW" },
 			})
 		end
 	},
