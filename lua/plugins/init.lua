@@ -19,6 +19,7 @@ return {
 				["<leader>m"] = { name = "+markdown" },
 				["<leader>mp"] = { "<cmd>MarkdownPreview<cr>", "markdown preview" },
 				["<leader>t"] = { "<cmd>TranslateW<cr>", "TranslateW" },
+				["<leader>d"] = { name = "+debug" },
 			})
 		end
 	},
