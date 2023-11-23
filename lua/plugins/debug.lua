@@ -6,6 +6,7 @@ return {
 
 	    -- fancy UI for the debugger
 	    {
+
 	      "rcarriga/nvim-dap-ui",
 	      -- stylua: ignore
 	      keys = {
@@ -14,7 +15,7 @@ return {
 	      },
 	      opts = {},
 	      config = function(_, opts)
-		-- setup dap config by VsCode launch.json file
+		-- setup dap config by vscode launch.json file
 		-- require("dap.ext.vscode").load_launchjs()
 		local dap = require("dap")
 		local dapui = require("dapui")
@@ -33,7 +34,7 @@ return {
 
 	    -- virtual text for the debugger
 	    {
-	      "theHamsta/nvim-dap-virtual-text",
+	      "thehamsta/nvim-dap-virtual-text",
 	      opts = {},
 	    },
 
