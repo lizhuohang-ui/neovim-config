@@ -2,6 +2,8 @@
 local set = vim.o
 set.number = true -- line number
 set.scrolloff = 10
+set.tabstop = 2
+set.shiftwidth = 2
 set.relativenumber = true -- relative line number
 set.clipboard = "unnamedplus" -- access OS clipboard in neovim
 

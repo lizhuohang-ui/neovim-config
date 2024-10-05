@@ -76,52 +76,6 @@ return {
 		end
 	},
 	{
-		'nvimdev/dashboard-nvim',
-		event = 'VimEnter',
-		config = function()
-
-			require('dashboard').setup {
-				-- config
-				theme = "hyper",
-				config = {
-
-					header = {
-						' ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗',
-						' ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║',
-						' ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║',
-						' ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║',
-						' ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║',
-						' ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝',
-					}
-				}
-			}
-		end,
-		dependencies = { { 'nvim-tree/nvim-web-devicons' } }
-	},
-	{
-		'akinsho/bufferline.nvim',
-		version = "*",
-		dependencies = 'nvim-tree/nvim-web-devicons',
-		config = function()
-			vim.opt.termguicolors = true
-			require("bufferline").setup {
-				options = {
-					diagnostics = "nvim_lsp",
-					offsets = {
-						{
-							filetype = "neo-tree",
-							text = "Neo-tree",
-							highlight = "Directory",
-							text_align = "left"
-						}
-
-					}
-				}
-			}
-		end
-	},
-	{
-
 		'stevearc/conform.nvim',
 		opts = {},
 		config = function()

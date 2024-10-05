@@ -18,7 +18,4 @@ keymaps.set("n", "j", [[v:count ? 'j' : 'gj']], { noremap = true, expr = true})
 keymaps.set("n", "k", [[v:count ? 'k' : 'gk']], { noremap = true, expr = true})
 -- Lazy
 keymaps.set("n", "<leader>l", ":Lazy<CR>", opt)
--- bufferline Tab switch
-keymaps.set("n", "H", ":BufferLineCyclePrev<CR>", opt)
-keymaps.set("n", "L", ":BufferLineCycleNext<CR>", opt)
 
