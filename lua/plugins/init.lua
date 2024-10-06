@@ -1,28 +1,4 @@
 return {
-	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-		init = function()
-			vim.o.timeout = true
-			vim.o.timeoutlen = 300
-		end,
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		},
-		config = function()
-			local wk = require("which-key")
-			wk.register({
-				["<leader>v"] = { "<c-w>v", "vsplit window" },
-				["<leader>s"] = { "<c-w>s", "split window" },
-				["<leader>m"] = { name = "+markdown" },
-				["<leader>mp"] = { "<cmd>MarkdownPreview<cr>", "markdown preview" },
-				["<leader>t"] = { "<cmd>TranslateW<cr>", "TranslateW" },
-				["<leader>d"] = { name = "+debug" },
-			})
-		end
-	},
 
 	{
 		"folke/persistence.nvim",
@@ -72,19 +48,6 @@ return {
 				sync_install = false,
 				highlight = { enable = true },
 				indent = { enable = true },
-			})
-		end
-	},
-	{
-		'stevearc/conform.nvim',
-		opts = {},
-		config = function()
-			require("conform").setup({
-				formatters_by_ft = {
-					lua = { "stylua" },
-					-- Conform will run multiple formatters sequentially
-					python = { "isort", "black" },
-				},
 			})
 		end
 	},
