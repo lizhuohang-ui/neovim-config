@@ -54,6 +54,10 @@ require("lspconfig").pyright.setup {
 	capabilities = capabilities
 }
 
+require("lspconfig").clangd.setup {
+	capabilities = capabilities
+}
+
 require("lspconfig")['grammarly'].setup {
 	capabilities = capabilities
 }

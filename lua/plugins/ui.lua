@@ -15,7 +15,7 @@ return {
 		event = "VeryLazy",
 		dependencies = 'nvim-tree/nvim-web-devicons',
 		keys = {
-			{ "<leader>wc", "<Cmd>BufferLineTogglePin<CR>",   desc = "close current buffer" },
+			{ "<leader>bc", "<Cmd>bdelete<CR>",               desc = "close current buffer" },
 			{ "<leader>br", "<Cmd>BufferLineCloseRight<CR>",  desc = "close buffer to the right" },
 			{ "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>",   desc = "close buffer to the left" },
 			{ "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>", desc = "close other buffers" },
