@@ -9,9 +9,7 @@ return {
 			-- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
 			vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-			-- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
-
-			-- Use LspAttach autocommand to only map the following keys
+			-- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist) Use LspAttach autocommand to only map the following keys
 			-- after the language server attaches to the current buffer
 			vim.lsp.buf.formatting_sync = nil
 			vim.api.nvim_create_autocmd("LspAttach", {

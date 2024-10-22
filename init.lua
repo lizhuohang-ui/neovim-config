@@ -24,7 +24,16 @@ require("lazy").setup("plugins")
 
 -- lsp config
 require("mason").setup()
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup({
+	ensure_installed = {
+		"lus_ls",
+		"pyright",
+		"clangd",
+		"verible",
+	},
+	automatic_installation = true,
+}
+)
 local lspconfig = require('lspconfig')
 
 require("neodev").setup({
@@ -59,5 +68,9 @@ require("lspconfig").clangd.setup {
 }
 
 require("lspconfig")['grammarly'].setup {
+	capabilities = capabilities
+}
+
+require("lspconfig").verible.setup {
 	capabilities = capabilities
 }
