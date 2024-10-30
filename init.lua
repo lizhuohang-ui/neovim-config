@@ -26,7 +26,7 @@ require("lazy").setup("plugins")
 require("mason").setup()
 require("mason-lspconfig").setup({
 	ensure_installed = {
-		"lus_ls",
+		"lua_ls",
 		"pyright",
 		"clangd",
 		"verible",
