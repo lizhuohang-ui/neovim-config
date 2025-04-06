@@ -98,7 +98,21 @@ return {
 		---@type ibl.config
 		opts = {},
 		config = function()
-			require("ibl").setup()
+			require("ibl").setup({
+				exclude = {
+					filetypes = {
+						'help',
+						'dashboard',
+						'NvimTree',
+						'neo-tree',
+					},
+					buftypes = {
+						'nofile',
+						'terminal',
+					},
+				},
+			}
+			)
 		end,
 	},
 	{
