@@ -1,5 +1,5 @@
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
--- vim.g.mkdp_browser = "firefox"
+vim.g.mkdp_browser = "chromium"
 -- neovim option configuration
 require("config.options")
 -- keybindings
@@ -34,11 +34,10 @@ require("mason-lspconfig").setup({
 	automatic_installation = true,
 }
 )
-local lspconfig = require('lspconfig')
-
-require("neodev").setup({
-	-- add any options here, or leave empty to use the default settings
-})
+-- local lspconfig = require('lspconfig')
+-- require("neodev").setup({
+-- 	-- add any options here, or leave empty to use the default settings
+-- })
 
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -47,30 +46,66 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
 --	capabilities = capabilities
 --}
+--
+vim.lsp.config.lua_ls = {
+    capabilities = capabilities,
+    settings = {
+        Lua = {
+            runtime = { version = "LuaJIT" },
+            diagnostics = {
+                globals = { "vim" },
+            },
+        },
+    },
+}
+vim.lsp.enable("lua_ls")
 
-require("lspconfig").lua_ls.setup {
-	capabilities = capabilities,
-	settings = {
-		Lua = {
-			runtime = {
-				version = "LuaJIT"
-			}
-		}
-	}
+vim.lsp.config.pyright = {
+    capabilities = capabilities,
 }
 
-require("lspconfig").pyright.setup {
-	capabilities = capabilities
+vim.lsp.enable("pyright")
+
+vim.lsp.config.clangd = {
+    capabilities = capabilities,
 }
 
-require("lspconfig").clangd.setup {
-	capabilities = capabilities
+vim.lsp.enable("clangd")
+
+vim.lsp.config.grammarly = {
+    capabilities = capabilities,
 }
 
-require("lspconfig")['grammarly'].setup {
-	capabilities = capabilities
+vim.lsp.enable("grammarly")
+
+vim.lsp.config.verible = {
+    capabilities = capabilities,
 }
 
-require("lspconfig").verible.setup {
-	capabilities = capabilities
-}
+vim.lsp.enable("verible")
+-- require("lspconfig").lua_ls.setup {
+-- 	capabilities = capabilities,
+-- 	settings = {
+-- 		Lua = {
+-- 			runtime = {
+-- 				version = "LuaJIT"
+-- 			}
+-- 		}
+-- 	}
+-- }
+--
+-- require("lspconfig").pyright.setup {
+-- 	capabilities = capabilities
+-- }
+--
+-- require("lspconfig").clangd.setup {
+-- 	capabilities = capabilities
+-- }
+--
+-- require("lspconfig")['grammarly'].setup {
+-- 	capabilities = capabilities
+-- }
+--
+-- require("lspconfig").verible.setup {
+-- 	capabilities = capabilities
+-- }

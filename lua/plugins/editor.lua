@@ -20,40 +20,88 @@ return {
 				desc = "Explorer NeoTree (root dir)"
 			},
 		},
-		config = function()
-			require("neo-tree").setup({
-				enable_git_status = true,
-				default_component_configs = {
-					git_status = {
-						symbols = {
-							-- Change type
-							added     = "✚",
-							deleted   = "✖",
-							modified  = "",
-							renamed   = "󰁕",
-							-- Status type
-							untracked = "",
-							ignored   = "",
-							unstaged  = "󰄱",
-							staged    = "",
-							conflict  = "",
-						}
+		opts = {
+			sources = { "filesystem", "buffers", "git_status" },
+			open_file_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "Outline" },
+			filesystem = {
+				bind_to_cwd = false,
+				follow_current_file = { enabled = true },
+				use_libuv_file_watcher = true,
+				hijack_netrw_behavior = "open_default",
+			},
+			window = {
+				mappings = {
+					["l"] = "open",
+					["h"] = "close_node",
+					["<space>"] = "none",
+					["Y"] = {
+						function(state)
+							local node = state.tree:get_node()
+							local path = node:get_id()
+							vim.fn.setreg("+", path, "c")
+						end,
+						desc = "Copy Path to Clipboard",
+					},
+					["P"] = { "toggle_preview", config = { use_float = false } },
+					["O"] = "system_open",
+
+				}
+			},
+			default_component_configs = {
+				indent = {
+					with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
+					expander_collapsed = "",
+					expander_expanded = "",
+					expander_highlight = "NeoTreeExpander",
+				},
+				git_status = {
+					symbols = {
+						-- Change type
+						added     = "✚",
+						deleted   = "✖",
+						modified  = "",
+						renamed   = "󰁕",
+						-- Status type
+						untracked = "",
+						ignored   = "",
+						unstaged  = "󰄱",
+						staged    = "",
+						conflict  = "",
 					}
 				}
-			})
+			}
+		},
+		config = function(_, opts)
+			-- require("neo-tree").setup({
+			-- 	enable_git_status = true,
+			-- })
+			require("neo-tree").setup(opts)
 		end,
 	},
 	-- file finder
 	{
 		'nvim-telescope/telescope.nvim',
-		tag = '0.1.4',
+		tag = '0.1.8',
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		keys = {
 			{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "find files" },
 			{ "<leader>fo", "<cmd>Telescope oldfiles<cr>",   desc = "find oldfiles" },
 			{ "<leader>fr", "<cmd>Telescope resume<cr>",     desc = "resume files" },
 			{ "<leader>fg", "<cmd>Telescope live_grep<cr>",  desc = "grep files" },
+			{ "<leader>fh", "<cmd>Telescope help_tags<cr>",  desc = "help tags" },
 		},
+		config = function()
+			local actions = require("telescope.actions")
+			require("telescope").setup {
+				defaults = {
+					mappings = {
+						n = {
+							["q"] = actions.close
+						},
+					},
+				}
+			}
+		end
 	},
 	-- search/repace in multiple files
 	-- test code
@@ -103,12 +151,15 @@ return {
 			vim.o.timeoutlen = 300
 		end,
 		opts = {
+			preset = "helix",
+			defaults = {},
 			-- your configuration comes here
 			-- or leave it empty to use the default settings
 			-- refer to the configuration section below
 		},
-		config = function()
+		config = function(_, opts)
 			local wk = require("which-key")
+			wk.setup(opts)
 			wk.add({
 				{ "<leader>w",  group = "window" },
 				{ "<leader>wv", "<c-w>v",                   desc = "vsplit window" },
