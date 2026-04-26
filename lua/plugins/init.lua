@@ -21,7 +21,12 @@ return {
 		"nvim-neorg/neorg",
 		build = ":Neorg sync-parsers",
 		event = "VeryLazy",
-		dependencies = { "nvim-lua/plenary.nvim" },
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-neorg/lua-utils.nvim",
+			"nvim-neotest/nvim-nio",
+			"pysan3/pathlib.nvim",
+		},
 		config = function()
 			require("neorg").setup {
 				load = {

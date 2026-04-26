@@ -82,6 +82,7 @@ return {
 	{
 		'nvim-telescope/telescope.nvim',
 		tag = '0.1.8',
+		cmd = "Telescope",
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		keys = {
 			{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "find files" },
@@ -131,7 +132,6 @@ return {
 	{
 		"folke/flash.nvim",
 		event = "VeryLazy",
-		vscode = true,
 		opts = {},
 		-- stylua: ignore
 		keys = {

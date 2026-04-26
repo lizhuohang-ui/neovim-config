@@ -13,18 +13,17 @@ return {
 		'akinsho/bufferline.nvim',
 		version = "*",
 		event = "VeryLazy",
-		dependencies = 'nvim-tree/nvim-web-devicons',
+		dependencies = { 'nvim-tree/nvim-web-devicons' },
 		keys = {
 			{ "<leader>bc", "<Cmd>bdelete<CR>",               desc = "close current buffer" },
 			{ "<leader>br", "<Cmd>BufferLineCloseRight<CR>",  desc = "close buffer to the right" },
 			{ "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>",   desc = "close buffer to the left" },
 			{ "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>", desc = "close other buffers" },
 			{ "<S-h>",      "<Cmd>BufferLineCyclePrev<CR>",   desc = "Prev buffer" },
-			{ "<S-l>",      "<Cmd>BufferLineCycleNext<CR>",   desc = "Nexe buffer" },
+			{ "<S-l>",      "<Cmd>BufferLineCycleNext<CR>",   desc = "Next buffer" },
 		},
 		config = function()
 			vim.opt.termguicolors = true
-			vim.print("bufferline")
 			require("bufferline").setup {
 				options = {
 					mode = "buffers",
@@ -33,7 +32,7 @@ return {
 					offsets = {
 						{
 							filetype = "neo-tree",
-							text = "File EXplorer",
+							text = "File Explorer",
 							highlight = "Directory",
 							text_align = "left"
 						}
@@ -143,13 +142,19 @@ return {
 					'',
 				},
 				center = {
-					{ action = 'lua LazyVim.pick()()', desc = " Find File", icon = " ", key = "f" },
+					{ action = "Telescope find_files", desc = " Find File", icon = " ", key = "f" },
 					{ action = "ene | startinsert", desc = " New File", icon = " ", key = "n" },
-					{ action = 'lua LazyVim.pick("oldfiles")()', desc = " Recent Files", icon = " ", key = "r" },
-					{ action = 'lua ', desc = " Find Text", icon = " ", key = "g" },
-					{ action = 'lua LazyVim.pick.config_files()()', desc = " Config", icon = " ", key = "c" },
+					{ action = "Telescope oldfiles", desc = " Recent Files", icon = " ", key = "r" },
+					{ action = "Telescope live_grep", desc = " Find Text", icon = " ", key = "g" },
+					{
+						action = function()
+							require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
+						end,
+						desc = " Config",
+						icon = " ",
+						key = "c"
+					},
 					{ action = 'lua require("persistence").load()', desc = " Restore Session", icon = " ", key = "s" },
-					{ action = "LazyExtras", desc = " Lazy Extras", icon = " ", key = "x" },
 					{ action = "Lazy", desc = " Lazy", icon = "󰒲 ", key = "l" },
 					{ action = function() vim.api.nvim_input("<cmd>qa<cr>") end, desc = " Quit", icon = " ", key = "q" },
 				},

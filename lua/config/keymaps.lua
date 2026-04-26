@@ -13,9 +13,7 @@ keymaps.set("n", "<C-k>", "<C-w>k", opt)
 -- map jk and kj to <Esc>
 keymaps.set("i", "jk", "<Esc>", opt)
 keymaps.set("i", "kj", "<Esc>", opt)
--- easily 
 keymaps.set("n", "j", [[v:count ? 'j' : 'gj']], { noremap = true, expr = true})
 keymaps.set("n", "k", [[v:count ? 'k' : 'gk']], { noremap = true, expr = true})
 -- Lazy
 keymaps.set("n", "<leader>l", ":Lazy<CR>", opt)
-

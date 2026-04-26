@@ -9,7 +9,6 @@ set.wrap = false -- disable line wrap
 
 -- neovide configs
 if vim.g.neovide then
-	vim.print(vim.g.neovide_version)
 	vim.g.neovide_transparency = 0.8
 end
 

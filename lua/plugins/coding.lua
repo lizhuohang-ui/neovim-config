@@ -11,6 +11,7 @@ return {
 		"hrsh7th/nvim-cmp",
 		dependencies = {
 			'neovim/nvim-lspconfig',
+			'windwp/nvim-autopairs',
 			'hrsh7th/cmp-nvim-lsp',
 			'hrsh7th/cmp-buffer',
 			'hrsh7th/cmp-path',
@@ -20,6 +21,7 @@ return {
 		},
 
 		config = function()
+			local unpack = unpack
 			-- Set up nvim-cmp.
 			local cmp = require 'cmp'
 
@@ -29,7 +31,6 @@ return {
 			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 			local has_words_before = function()
-				unpack = unpack or table.unpack
 				local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 				return col ~= 0 and
 						vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") ==
@@ -131,10 +132,10 @@ return {
 	{
 		"windwp/nvim-autopairs",
 		event = "VeryLazy",
-		config = function()
-			require("nvim-autopairs").setup({ fast_wrap = {}, disable_filetype = { "TelescopePrompt", "vim", "sh" },
-			})
-		end,
+		opts = {
+			fast_wrap = {},
+			disable_filetype = { "TelescopePrompt", "vim", "sh" },
+		},
 	},
 	-- comment
 	{
