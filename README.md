@@ -126,6 +126,8 @@ neo-tree shows Files, Buffers, and Git sources in the window bar. Dotfiles and i
 | `<leader>fr` | Resume last search |
 | `<leader>fh` | Help tags |
 
+Telescope previews use regex highlighting instead of Treesitter highlighting to stay compatible with the current `nvim-treesitter` main branch API.
+
 ### Search & Jump (flash.nvim)
 
 | Key | Mode | Action |

@@ -133,6 +133,11 @@ return {
 			local actions = require("telescope.actions")
 			require("telescope").setup {
 				defaults = {
+					preview = {
+						-- Telescope 0.1.8 still calls removed nvim-treesitter parser APIs
+						-- with nvim-treesitter main on Neovim 0.12, so use regex fallback.
+						treesitter = false,
+					},
 					mappings = {
 						n = {
 							["q"] = actions.close
