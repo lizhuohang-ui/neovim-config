@@ -16,6 +16,7 @@ A modular, lazy-loaded Neovim configuration powered by [lazy.nvim](https://githu
 - **Session Management** — Save and restore sessions
 - **Snippets** — LuaSnip with friendly-snippets collection
 - **C/C++ Enhancements** — clangd inlay hints and AST view
+- **AI Integration** — GitHub Copilot suggestions and OpenCode chat agent
 
 ## 📦 Prerequisites
 
@@ -70,6 +71,7 @@ Wait for the installation to complete, then restart Neovim.
 │       ├── mason.lua         # LSP/Formatter/Linter/Debugger installer
 │       ├── markdown.lua      # Live markdown preview
 │       ├── c_cpp.lua         # clangd extensions (inlay hints, AST)
+│       ├── ai.lua            # Copilot and OpenCode AI integration
 │       ├── todo.lua          # Todo list management
 │       └── util.lua          # Session persistence
 ```
@@ -175,6 +177,17 @@ Leader key is `<Space>`.
 | `<leader>qs` | Restore session |
 | `<leader>ql` | Restore last session |
 | `<leader>qd` | Don't save current session |
+
+### AI
+
+| Key | Action |
+|---|---|
+| `<M-l>` | Accept Copilot suggestion |
+| `<M-]>` / `<M-[>` | Next / Previous Copilot suggestion |
+| `<M-CR>` | Open Copilot panel |
+| `<leader>oo` | Toggle OpenCode chat |
+| `<leader>on` | New OpenCode session |
+| `<leader>or` | Run OpenCode prompt |
 
 ### Other
 

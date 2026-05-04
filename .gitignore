@@ -1,1 +1,6 @@
 *.log
+*.swp
+*.swo
+.DS_Store
+plugin/
+.codex
