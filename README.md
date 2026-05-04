@@ -103,9 +103,18 @@ Leader key is `<Space>`.
 | Key | Action |
 |---|---|
 | `<leader>e` | Toggle file explorer |
+| `<leader>E` | Reveal current file in explorer |
+| `<` / `>` | Switch between Files / Buffers / Git sources |
 | `l` / `h` | Open / Close node |
+| `<BS>` | Navigate to parent directory |
+| `.` | Set selected directory as root |
+| `/` | Fuzzy find in explorer |
+| `H` | Toggle filtered items |
 | `Y` | Copy file path to clipboard |
 | `P` | Toggle preview |
+| `O` | Open with system default app |
+
+neo-tree shows Files, Buffers, and Git sources in the window bar. Dotfiles and ignored files are visible by default, and `H` can toggle the filtered view.
 
 ### Fuzzy Finder (Telescope)
 

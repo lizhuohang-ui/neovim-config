@@ -14,20 +14,53 @@ return {
 				function()
 					require("neo-tree.command").execute({
 						toggle = true,
+						source = "filesystem",
 						position = "left",
 					})
 				end,
-				desc = "Explorer NeoTree (root dir)"
+				desc = "Explorer NeoTree",
+			},
+			{
+				"<leader>E",
+				function()
+					local reveal_file = vim.fn.expand("%:p")
+					if reveal_file == "" or vim.uv.fs_stat(reveal_file) == nil then
+						reveal_file = vim.fn.getcwd()
+					end
+
+					require("neo-tree.command").execute({
+						action = "focus",
+						source = "filesystem",
+						position = "left",
+						reveal_file = reveal_file,
+						reveal_force_cwd = true,
+					})
+				end,
+				desc = "Explorer NeoTree (current file)",
 			},
 		},
 		opts = {
 			sources = { "filesystem", "buffers", "git_status" },
+			source_selector = {
+				winbar = true,
+				sources = {
+					{ source = "filesystem", display_name = " 󰉓 Files " },
+					{ source = "buffers", display_name = " 󰈚 Buffers " },
+					{ source = "git_status", display_name = " 󰊢 Git " },
+				},
+			},
 			open_file_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "Outline" },
 			filesystem = {
 				bind_to_cwd = false,
 				follow_current_file = { enabled = true },
 				use_libuv_file_watcher = true,
 				hijack_netrw_behavior = "open_default",
+				filtered_items = {
+					visible = true,
+					hide_by_name = {},
+					never_show = {},
+					never_show_by_pattern = {},
+				},
 			},
 			window = {
 				mappings = {
@@ -43,9 +76,17 @@ return {
 						desc = "Copy Path to Clipboard",
 					},
 					["P"] = { "toggle_preview", config = { use_float = false } },
-					["O"] = "system_open",
-
-				}
+					["O"] = {
+						function(state)
+							local node = state.tree:get_node()
+							local path = node.path or node:get_id()
+							if path then
+								vim.ui.open(path)
+							end
+						end,
+						desc = "Open with System Application",
+					},
+				},
 			},
 			default_component_configs = {
 				indent = {
@@ -72,9 +113,6 @@ return {
 			}
 		},
 		config = function(_, opts)
-			-- require("neo-tree").setup({
-			-- 	enable_git_status = true,
-			-- })
 			require("neo-tree").setup(opts)
 		end,
 	},
