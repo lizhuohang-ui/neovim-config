@@ -15,7 +15,7 @@ return {
 				"lua_ls",
 				"pyright",
 				"clangd",
-				"grammarly",
+				"marksman",
 				"verible",
 			},
 			automatic_enable = false,

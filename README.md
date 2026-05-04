@@ -217,7 +217,7 @@ Leader key is `<Space>`.
 | Python | pyright | — | — |
 | C/C++ | clangd | — | — |
 | Verilog/SystemVerilog | verible | — | — |
-| Markdown | grammarly | — | — |
+| Markdown | marksman| — | — |
 
 Edit `lua/plugins/mason.lua` to add more tools.
 
