@@ -12,7 +12,7 @@ A modular, lazy-loaded Neovim configuration powered by [lazy.nvim](https://githu
 - **Debugging** — Full DAP support with UI, virtual text, and Mason integration
 - **Beautiful UI** — Nord colorscheme, bufferline, lualine, dashboard, and noice
 - **Git Integration** — LazyGit directly inside Neovim
-- **Markdown Preview** — Live preview in browser
+- **Markdown Preview & Rendering** — Live browser preview plus in-buffer Markdown rendering
 - **Session Management** — Save and restore sessions
 - **Snippets** — LuaSnip with friendly-snippets collection
 - **C/C++ Enhancements** — clangd inlay hints and AST view
@@ -69,7 +69,7 @@ Wait for the installation to complete, then restart Neovim.
 │       ├── git.lua           # LazyGit integration
 │       ├── debug.lua         # nvim-dap with UI, virtual text, Mason integration
 │       ├── mason.lua         # LSP/Formatter/Linter/Debugger installer
-│       ├── markdown.lua      # Live markdown preview
+│       ├── markdown.lua      # Live markdown preview and in-buffer rendering
 │       ├── c_cpp.lua         # clangd extensions (inlay hints, AST)
 │       ├── ai.lua            # Copilot and OpenCode AI integration
 │       ├── todo.lua          # Todo list management
@@ -180,6 +180,7 @@ Telescope previews use regex highlighting instead of Treesitter highlighting to 
 | Key | Action |
 |---|---|
 | `<leader>mp` | Markdown preview in browser |
+| `<leader>mr` | Toggle in-buffer Markdown rendering |
 
 ### Session Management
 
@@ -234,7 +235,7 @@ Edit `lua/plugins/mason.lua` to add more tools.
 
 ### Treesitter Languages
 
-Pre-installed parsers: `c`, `cpp`, `lua`, `vim`, `vimdoc`, `markdown`, `python`.
+Pre-installed parsers: `c`, `cpp`, `lua`, `vim`, `vimdoc`, `markdown`, `markdown_inline`, `python`, `bash`, `json`, `query`.
 
 Run `:TSInstall <language>` to add more.
 
@@ -276,6 +277,7 @@ Edit `lua/config/options.lua` for editor settings and `lua/config/keymaps.lua` f
 - `lazy-lock.json` pins plugin versions — commit it to share a reproducible setup
 - The config uses `event = "VeryLazy"` extensively for fast startup
 - LazyGit must be installed separately for `<leader>g` to work
+- render-markdown renders core Markdown in-buffer; optional HTML, YAML, and LaTeX rendering is disabled unless you add the corresponding parsers/tools
 - For Neovide GUI, transparency is set to `0.8` in `options.lua`
 - Session data is not committed (handled by persistence.nvim)
 
